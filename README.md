@@ -1,6 +1,10 @@
 # Seinfeld Trivia!
 ![https://media.giphy.com/media/l41lIkTqv4NTHPktO/giphy.gif] (https://media.giphy.com/media/l41lIkTqv4NTHPktO/giphy.gif)
 
+## Link To Game
+
+### [Seinfeld Trivia](https://phironaka.github.io/seinfeld-trivia/)
+
 ## Premise
 
 Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinfeld. 
@@ -12,7 +16,9 @@ Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinf
 ## User Story
 
 ### Full Launch List here:  
-https://trello.com/b/ReUkqopB/project1
+#### [Trello Board](https://trello.com/b/ReUkqopB/project1)
+
+
 
 - Once the player loads the site, they have the option to play a two player game or one player game 
 - For each given question: if you provide the correct answer, a 'ding' noise animates in the background

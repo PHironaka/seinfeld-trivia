@@ -1,4 +1,4 @@
-//variable holding all the games questions, player 
+//arry variable holding all the games questions, player info, etc 
 var game = {
   player1: {score: 0},
   player2: {score: 0},

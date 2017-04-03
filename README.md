@@ -10,6 +10,10 @@ Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinf
 - Must be fun!
 
 ## User Story
+
+### Full Launch List here:  
+https://trello.com/b/ReUkqopB/project1
+
 - Once the player loads the site, they have the option to play a two player game or one player game 
 - For each given question: if you provide the correct answer, a 'ding' noise animates in the background
 - For each correct answer, a 'giddyup!' message gets displayed signifying it was correct
@@ -39,5 +43,3 @@ Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinf
 var s = "JavaScript syntax highlighting";
 alert(s);
 ```
-
-## Learnings 

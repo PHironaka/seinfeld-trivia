@@ -1,5 +1,5 @@
 # Seinfeld Trivia!
-![https://media.giphy.com/media/l41lIkTqv4NTHPktO/giphy.gif] (https://media.giphy.com/media/l41lIkTqv4NTHPktO/giphy.gif)
+![https://media.giphy.com/media/l41lIkTqv4NTHPktO/giphy.gif](https://media.giphy.com/media/l41lIkTqv4NTHPktO/giphy.gif)
 
 ## Link To Game
 

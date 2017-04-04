@@ -10,11 +10,11 @@
 </head>
 
 <body>
-  <!--Welcome Screen -->
-  <!-- <div id="overlay">
+ <!-- <div id="overlay">
       <h1>Helloooooooo!</h1>
-  </div> -->
-  <!--Welcome Screen -->
+
+  </div>
+  <audio src="./assets/opposite2.mp3" autoplay="autoplay" loop="none"></audio> -->
 
   <nav id="nav">
 
@@ -153,8 +153,8 @@
     <button class="startButton">Start</button>
 
  <!--scoreboard-->
-    <div class="score-correct"></div>
-    <div class="score-incorrect"></div>
+    <div class="score-correct">correct: 0</div>
+    <div class="score-incorrect">wrong: 0</div>
 
   <!--houses all the content of the game: questions, possible answers -->
 <div class="quiz-content">
@@ -195,6 +195,11 @@ $(window).load(function() {
 $(document).ready(function() {
   $('#overlay h1').hide(0).delay(300).fadeIn(2000);
 });
+
+$(document).ready(function() {
+    $("#my_audio").get(0).play();
+});
+
 </script> -->
 
 </body>

@@ -1,52 +1,56 @@
-/////////////////////////////////
-// Pop up hamburger button   //
-//////////////////////////////
-// Overlay fade out on load
-
-var icon = document.getElementById("icon"); // gets #icon div iD element
-var icon1 = document.getElementById("a"); // gets #a div iD element
-var icon2 = document.getElementById("b"); // gets #b div iD element
-var icon3 = document.getElementById("c"); // gets #c div iD element
-var nav = document.getElementById('nav'); // gets #nav div iD element
-
-icon.addEventListener('click', function() { // adding a click event listener on the icon
-  icon1.classList.toggle('a'); // applying that event listener to #a
-  icon2.classList.toggle('c'); // applying that event listener to #b
-  icon3.classList.toggle('b'); // applying that event listener to #c
-  nav.classList.toggle('show'); // applying that event listener to #show
-});
-
+/*
+Practice to keep code organized. DRY DRY DRY
+i. Global Variables (tried to keep to a minimum)
+ii. Hamburger icon
+iii. Player 1 & Player 2 Functionality
+iv.
+*/
 
 /////////////////////////////////
 // Global Variables   //
 //////////////////////////////
 
- var theBody = $('body');
- var theContainer = $('.container');
- var x = 1;
- var scoreCorrect = $('.score-correct')
- var scoreIncorrect = $('.score-incorrect')
+ var theBody = $('body'); // body
+ var theContainer = $('.container'); // container class
+ var scoreCorrect = $('.score-correct'); // correct score class
+ var scoreIncorrect = $('.score-incorrect'); // incorrect score class
+ var icon = document.getElementById("icon"); // gets #icon div iD element
+ var icon1 = document.getElementById("a"); // gets #a div iD element
+ var icon2 = document.getElementById("b"); // gets #b div iD element
+ var icon3 = document.getElementById("c"); // gets #c div iD element
+ var nav = document.getElementById('nav'); // gets #nav div iD element
+ var game = {
+     player1: {marker: "👴🏽", score: 0 },
+     player2: {marker: "👱🏼", score: 0 }
+   }
+ var currentPlayer = game.player1;
+ var choice = $('.choice');
+
+
  /////////////////////////////////
- //         Appending   //
+ // Pop up hamburger button   //
  //////////////////////////////
- theBody.append(theContainer);
+ // Overlay fade out on load
+
+   icon.addEventListener('click', function() { // adding a click event listener on the icon
+   icon1.classList.toggle('a'); // applying that event listener to #a
+   icon2.classList.toggle('c'); // applying that event listener to #b
+   icon3.classList.toggle('b'); // applying that event listener to #c
+   nav.classList.toggle('show'); // applying that event listener to #show
+ });
+
+ /////////////////////////////////
+ ////       Appendages      ////
+ //////////////////////////////
+ theBody.append(theContainer); //appending the container to the body
 
 
-$( document ).ready(function() {
-  console.log("ready!");
+ $( document ).ready(function() {
 
-  var game = {
-    player1: {marker: "👴🏽", score: 0 },
-    player2: {marker: "👱🏼", score: 0 }
-  }
-
-  var currentPlayer = game.player1;
-  var choice = $('.choice');
-
-  function playTurn() {
-    $(this).text(currentPlayer.marker)
-    $(this).off('click', playTurn)
-    checkWinner()
+  function playTurn() { // signify a players turn
+    $(this).text(currentPlayer.marker) //
+    $(this).off('click', playTurn) // Listening for a click event (off)
+    checkWinner() // apply the Check Winner function to see whos winning the game
   }
 
   function switchTurns() {
@@ -205,13 +209,13 @@ $( document ).ready(function() {
 
         numberCorrect++;
         correctanswer();
-        scoreCorrect.text(x++);
+        scoreCorrect.text('correct: ' + numberCorrect);
         stop();
       }
 
       else {
         wronganswer(console.log("answer is wrong."));
-        scoreIncorrect.text(x++);
+        scoreIncorrect.text('wrong: ' + numberWrong);
         stop();
       };
 

@@ -41,11 +41,10 @@ Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinf
 - SCSS for CSS preprocessing
 - For CSS styntax I used Block Element Modifier (BEM) Methodology for css naming conveniton. 
 
-## Naming Convention
+## Elements of the game
 
-` .container ` - frame of the game
+- ` game ` - All elements of the game sit within this variable
+- `player1` - Player 1 
+- `num` - sets time to 0
+- `time` - Countdown timer variable
 
-```
-var s = "JavaScript syntax highlighting";
-alert(s);
-```

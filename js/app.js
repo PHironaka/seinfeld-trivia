@@ -17,7 +17,7 @@ Practice to keep code organized. DRY DRY DRY
 */
 
 /////////////////////////////////
-// Global Variables   //
+//       Global Variables     //
 //////////////////////////////
 
  var theBody = $('body'); // body
@@ -29,13 +29,6 @@ Practice to keep code organized. DRY DRY DRY
  var icon2 = document.getElementById("b"); // gets #b div iD element
  var icon3 = document.getElementById("c"); // gets #c div iD element
  var nav = document.getElementById('nav'); // gets #nav div iD element
- var game = {       // variable to store player info
-     player1: {marker: "👴🏽", score: 0 },
-     player2: {marker: "👱🏼", score: 0 }
-   }
- var currentPlayer = game.player1;
- var choice = $('.choice');
-
 
  /////////////////////////////////
  // Pop up hamburger button   //
@@ -48,6 +41,10 @@ Practice to keep code organized. DRY DRY DRY
    icon3.classList.toggle('b'); // applying that event listener to #c
    nav.classList.toggle('show'); // applying that event listener to #show
  });
+
+ /////////////////////////////////
+ //   q/a/image object array  //
+ //////////////////////////////
 
  var seinfeldOne = {
    question: 'What is Kramers first name?',
@@ -112,11 +109,23 @@ Practice to keep code organized. DRY DRY DRY
  //    Functions    //
   ////////////////////
 
+
+// TESTING FUNCTIONS:
+
+// Reset button
+ //  function clear() {
+ //   $display.val("");
+ // }
+ // theContainer.show("#clear").on("click", clear);
+ // $("#clear").hide();
+
+
   $(".startButton").click(function(){ // begins the quiz
     questions = triviaQuestion;
     nextquestion();
      $(".startButton").hide(); // hide the start button once the game begins
   })
+
 
   function nextquestion() { // Function #3: Set the time of each question being asked
     time = 10; // Five Seconds of time per question
@@ -148,11 +157,11 @@ Practice to keep code organized. DRY DRY DRY
   };
 
 
-  function stop() { // Function #5: stops & clears the current question
+  function stop() { // stops & clears the current question
     clearInterval(counter);
     num++;
     if (num == questions.length) {
-      setTimeout(endgame,4000);
+      setTimeout(endTurn,3000);
     }
     else {
       setTimeout(nextquestion,4000);
@@ -167,6 +176,8 @@ Practice to keep code organized. DRY DRY DRY
         correctanswer(); // correct answer function applied
         scoreCorrect.text('correct: ' + numberCorrect); // text to signify the correct score
         stop(); //stops method on matched elements
+
+
       }
 
       else { // otherwise, use the same click event listener if the answer provided is wrong
@@ -202,14 +213,15 @@ Practice to keep code organized. DRY DRY DRY
     $(".info").html("<p>"+questions[num].info+"</p>");
   };
 
-
   function timeout() {
     numTimeout++; // for every question that's unanswered, make sure to talley a non-answer to each competitor's score
     $(".question").html("<p>Time's up! <br> The correct answer was: " + questions[num].answer + "</p>");
     $(".info").html("<p>"+questions[num].info+"</p>");
   };
 
-  function endgame() { // end of game function. The following gets displayed at the end of the game.
+
+
+  function endTurn() { // Updating scores and updating the turn count. The following gets displayed at the end of the game.
     $(".question").html("<h2> " + currentPlayer.marker + numberCorrect + " answers correct!</h2>"
        + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" + "<h2> "+ numTimeout +  " questions were left unanswered.</h2>");
     $(".choice").empty();
@@ -219,30 +231,60 @@ Practice to keep code organized. DRY DRY DRY
     numberCorrect = 0;
     numberWrong = 0;
     numTimeout = 0;
-    $("button").show();
-    checkWinner();
+
   };
 
-  choice.each(function(s) {
-    $(this).on('click', playTurn)
-    console.log('WORK DAMNIT.')
+// Resets page, just need to add a class and event listener
+// function resetPage() {
+//      location.reload();
+//  }
 
-  })
+//   function resetPage() { //resets the app back to its original starting point
+//     $(".reset").reload();
+// }
 
-  // function playTurn() { // Function #1: signify a players turn
-  //   $(this).text(currentPlayer.marker) // adds the current player's marker
-  //   $(this).off('click', playTurn) // Listening for a click event (off)
-  //   checkWinner() // apply the Check Winner function to see whos winning the game
-  // }
+// player turns
+
+var game = {  // variable to store player info
+    player1: {marker: "Chris ", score: 0, turn: true, right:0, wrong:0 , unanswered:0 },
+    player2: {marker: "Dave ", score: 0, turn: false, right:0, wrong:0, unanswered:0 }
+  }
+
+var currentPlayer = game.player1;
+var choice = $('.choice');
+
+choice.each(function(s) {
+  $(this).on('click', playTurn)
+  console.log('WORK DAMNIT.')
+
+})
+
+  function playTurn() { // Function #1: signify a players turn
+    $(this).text(currentPlayer.marker) // adds the current player's marker
+    $(this).off('click', playTurn) // Listening for a click event (off)
+   // checkWinner() // apply the Check Winner function to see whos winning the game
+  }
+
+  function switchTurns() { // Function #2: switch turns between player 1 and player 2
+    if(currentPlayer == game.player1) {
+      currentPlayer = game.player2
+    } else {
+      currentPlayer = game.player1
+    }
+  }
+
+
+  // $('.container').clear();
   //
-  // function switchTurns() { // Function #2: switch turns between player 1 and player 2
-  //   if(currentPlayer == game.player1) {
-  //     currentPlayer = game.player2
-  //   } else {
-  //     currentPlayer = game.player1
-  //   }
-  // }
+  // // if (game.player1.correct > game.player2.correct) { // if player one has more correct answers than player two, player one wins
+  //       theContainer.append("<p> Player one wins!</p>"); // append new paragraph element w/Player one wins
   //
+  // } else { // if player two has more correct answers than player one, player two wins
+  //     theContainer.append("<p> Player two wins!</p>");
+  // }
+
+
+
   // function checkWinner() { // check to see who the winner is
   //   if (game.player1.score >= game.player2.score || game.player2.score >= game.player1.score ) {
   //     $.alert({title: currentPlayer.marker, content: 'Is The Winner!'});
@@ -259,9 +301,6 @@ Practice to keep code organized. DRY DRY DRY
 
 
 
-// var game = {
-//   player1: {score: 0}, // array Player 1
-//   player2: {score: 0}, // array Player 2
 //
 //   //////////////////////
 //   //  QUIZ QUESTIONS  //

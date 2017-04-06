@@ -235,10 +235,14 @@ $(document).ready(function() {
     } else {
       if (game.player1.score > game.player2.score) {
         alert('player1 wins!');
-      } else {
+      } else if (game.player1.score == game.player2.score) {
+        alert('we have a tie folks!')
+      }
+
+      else {
         alert('player2 wins!');
       }
-        alert('the game is over');
+
     }
 
 
@@ -268,17 +272,3 @@ $(document).ready(function() {
       currentPlayer = game.player1
     }
   }
-
-  // function checkWinner() { // check to see who the winner is
-  //   if (game.player1.score >= game.player2.score || game.player2.score >= game.player1.score ) {
-  //     $(.alert({title: currentPlayer.marker, content: 'Is The Winner!'});
-  //
-  //     choice.each(function(s) {
-  //       $(this).off('click', playTurn)
-  //     })
-  //   } else {
-  //     switchTurns()
-  //   }
-  // }
-
-// });

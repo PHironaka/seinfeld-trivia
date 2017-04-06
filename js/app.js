@@ -2,7 +2,7 @@
 $(document).ready(function() {
   $('.score').hide();
   $('.quiz-content').hide();
-   $(".welcome").html("<h1> Are you master of your domain? King of the castle? Prove it!</h1>");
+   $(".welcome").html("<h1> Are you master of your domain? King of the castle? Lord...of the Manor? Prove it!</h1>");
 });
 
 /////////////////////////////////

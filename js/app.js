@@ -1,5 +1,11 @@
 
 
+$(document).ready(function() {
+  $('.score').hide();
+});
+
+
+
 /////////////////////////////////
 //       Global Variables     //
 //////////////////////////////
@@ -14,8 +20,8 @@
  var icon3 = document.getElementById("c"); // gets #c div iD element
  var nav = document.getElementById('nav'); // gets #nav div iD element
  var game = {  // variable to store player info
-     player1: {marker: "Marco ", score: 0, turn: true },
-     player2: {marker: "Polo ", score: 0, turn: false }
+     player1: {marker: "player 1 ", score: 0, turn: true },
+     player2: {marker: "player 2 ", score: 0, turn: false }
    }
 
  var currentPlayer = game.player1;
@@ -103,8 +109,17 @@
  // $("#clear").hide();
 
 
-  $(".startButton").click(function(){ // begins the quiz
+
+  $(".startButton").click(function(){ // click event listener to begin the quiz
+    console.log(currentPlayer);
     questions = triviaQuestion;
+  $('.score').show();
+
+  if (currentPlayer.marker == game.player2.marker) {
+    numberCorrect = 0;
+    numberWrong = 0;
+  }
+
     nextquestion();
      $(".startButton").hide(); // hide the start button once the game begins
   })
@@ -122,6 +137,8 @@
     $(".info").empty(); // strips child node from the info property
     $(".startButton").hide();
   };
+
+
 
 
   function increment() { // Function #4: countdown timer function
@@ -144,10 +161,10 @@
     num++;
 
     if (num >= questions.length) {
-      setTimeout(endgame,3000);
+      setTimeout(endgame,2000);
     }
     else {
-      setTimeout(nextquestion,4000);
+      setTimeout(nextquestion,2000);
     };
   };
 
@@ -212,19 +229,16 @@
     numberCorrect = 0;
     numberWrong = 0;
     numTimeout = 0;
-
-
-
-    if (currentPlayer = game.player2) {
-      $(".changePlayer").html("<h2> " + currentPlayer.marker +  "your turn!</h2>" );
-  } else if (game.player1) {
-        alert('the game is over');
-    }
-
-    if (game.player1.score > game.player2.score) {
-      console.log('player1 wins!')
+    if (currentPlayer == game.player1) {
+      $('.startButton').show().text(game.player2.marker + ' , your turn').css('b');
+      currentPlayer = game.player2
     } else {
-      console.log('player2 wins!')
+      if (game.player1.score > game.player2.score) {
+        alert('player1 wins!');
+      } else {
+        alert('player2 wins!');
+      }
+        alert('the game is over');
     }
 
 

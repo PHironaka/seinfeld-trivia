@@ -273,7 +273,7 @@ $(".choice").hide();
   };
 
   function timeout() {
-    numTimeout++; // for every question that's unanswered, make sure to talley a non-answer to each competitor's score
+    numberWrong++; // for every question that's unanswered, make sure to talley a non-answer to each competitor's score
     $(".question").html("<p>Time's up! <br> The correct answer was: " + questions[num].answer + "</p>");
     $(".info").html("<p>"+questions[num].info+"</p>");
     $(".choice").hide();
@@ -300,8 +300,8 @@ $(".choice").hide();
       currentPlayer = game.player2
     } else {
       if (game.player1.score > game.player2.score) {
-        alert(game.player1.marker + 'wins!');
-        $(".winner").html('<p>' + game.player1.marker+ 'has won! </p> <img src="https://media.giphy.com/media/KPdzGp8a20QbC/giphy.gif" alt="pez">')
+        alert(game.player1.marker + 'wins YAAAAS!');
+        $(".winner").html('<p>' + game.player1.marker+ 'has won! </p> <img src="https://media.tenor.co/images/8dfff07cf12e6e152acfb1cc8827486f/tenor.gif" alt="pez">')
       } else if (game.player1.score == game.player2.score) {
 
         $(".tie").html('<p> We have a tie! We are all winners! </p> <img src="./images/The_race.jpg" alt="the-race"> '); // image of correct answer

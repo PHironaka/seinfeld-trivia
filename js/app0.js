@@ -14,8 +14,8 @@
  var icon3 = document.getElementById("c"); // gets #c div iD element
  var nav = document.getElementById('nav'); // gets #nav div iD element
  var game = {  // variable to store player info
-     player1: {marker: "Marco ", score: 0, turn: true },
-     player2: {marker: "Polo ", score: 0, turn: false }
+     player1: {marker: "Chris ", score: 0, turn: true },
+     player2: {marker: "Dave ", score: 0, turn: false }
    }
 
  var currentPlayer = game.player1;
@@ -87,6 +87,12 @@
  var numTimeout = 0; // Time out for each question
  var timer = $('.timer'); // variable for the time remaining countdown timer
 
+
+ /////////////////////////////////
+ ////       Appendages      ////
+ //////////////////////////////
+
+ // $( document ).ready(function() {
 
   //////////////////////
  //    Functions    //
@@ -212,21 +218,14 @@
     numberCorrect = 0;
     numberWrong = 0;
     numTimeout = 0;
-
-
-
     if (currentPlayer = game.player2) {
-      $(".changePlayer").html("<h2> " + currentPlayer.marker +  "your turn!</h2>" );
-  } else if (game.player1) {
+      $('.startButton').show().text(currentPlayer.marker + ' , your turn').css({
+      "width": "10em",
+      "margin-left": "35%"
+    });
+    } else {
         alert('the game is over');
     }
-
-    if (game.player1.score > game.player2.score) {
-      console.log('player1 wins!')
-    } else {
-      console.log('player2 wins!')
-    }
-
 
   };
 
@@ -239,8 +238,15 @@
 //     $(".reset").reload();
 // }
 
-
 // player turns
+
+
+
+// choice.each(function(s) {
+//   $(this).on('click', playTurn)
+//   console.log('WORK DAMNIT.')
+//
+// })
   function playTurn() { // Function #1: signify a players turn
     $(this).text(currentPlayer.marker) // adds the current player's marker
     $(this).off('click', playTurn) // Listening for a click event (off)
@@ -255,9 +261,11 @@
     }
   }
 
+
+
   // function checkWinner() { // check to see who the winner is
   //   if (game.player1.score >= game.player2.score || game.player2.score >= game.player1.score ) {
-  //     $(.alert({title: currentPlayer.marker, content: 'Is The Winner!'});
+  //     $.alert({title: currentPlayer.marker, content: 'Is The Winner!'});
   //
   //     choice.each(function(s) {
   //       $(this).off('click', playTurn)
@@ -268,3 +276,79 @@
   // }
 
 // });
+
+
+
+//
+//   //////////////////////
+//   //  QUIZ QUESTIONS  //
+//   //////////////////////
+//
+//   questions: [
+//      {
+//        image: 'https://s-media-cache-ak0.pinimg.com/736x/9c/15/56/9c155660ff8014a32ac8bc8b2b344ec9.jpg',
+//        question: "What are the names of Elaine's bizarro friends?",
+//        answers: [
+//          {value: "Herman, Sal, Matthew", correct: false},
+//          {value: "Kevin, Gene, Feldman", correct: true},
+//          {value: "Elmo, Sid, Robert", correct: false},
+//          {value: "Michael, Alonzo, Martin", correct: false},
+//        ]
+//      },
+//
+//      {
+//        image: 'https://brobible.files.wordpress.com/2014/07/cosmo-kramer-assman3.png?w=650',
+//        question: "What is Kramer's first name?",
+//        answers: [
+//          {value: "Blake", correct: false},
+//          {value: "Christopher", correct: false},
+//          {value: "Cosmo", correct: true},
+//          {value: "Michael, Alonzo, Martin", correct: false},
+//        ]
+//      },
+//
+//      {
+//        image: 'http://kramersapartment.com/wp-content/uploads/jack-klompus-the-cadillac-seinfeld-1.jpg',
+//        question: "What is the name of the Gated Community Jery and George's parents move to?",
+//        answers: [
+//          {value: "Flamingo Estates", correct: false},
+//          {value: "Palm Condos", correct: false},
+//          {value: "Pelican Way", correct: false},
+//          {value: "Del Boca Vista", correct: true},
+//        ]
+//      },
+//
+//      {
+//        image: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-02/27/17/enhanced/webdr03/enhanced-13804-1425076996-24.png?no-auto',
+//        question: "What is the name of Jerry's nemesis on the show?",
+//        answers: [
+//          {value: "Newman", correct: true},
+//          {value: "Helen", correct: false},
+//          {value: "Einstein", correct: false},
+//          {value: "Frank", correct: false},
+//        ]
+//      },
+//
+//      {
+//        image: 'https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAANgAAAAJDJjYjViYzAwLTU4ODUtNGNiOC05ZTJmLTg4ZWVmY2M1NDM2YQ.jpg',
+//        question: "What electronic gift did Jerry give to his parents?",
+//        answers: [
+//          {value: "Wizard Computer", correct: true},
+//          {value: "Earrings", correct: false},
+//          {value: "Sneakers", correct: false},
+//          {value: "Food", correct: false},
+//        ]
+//      },
+//
+//      {
+//        image: 'http://vignette1.wikia.nocookie.net/seinfeld/images/8/86/TheFrogger.jpg/revision/latest?cb=20110826182700',
+//        question: "What video game did George have the high score on?",
+//        answers: [
+//          {value: "Tetris", correct: false},
+//          {value: "Galaga", correct: false},
+//          {value: "Pacman", correct: false},
+//          {value: "Frogger", correct: true},
+//        ]
+//      },
+//
+// }

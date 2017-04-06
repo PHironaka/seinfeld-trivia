@@ -3,35 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Seinfeld-Trivia</title>
-  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600" rel="stylesheet">
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
- <!-- <div id="overlay">
-      <h1>Helloooooooo!</h1>
 
-  </div>
-  <audio src="./assets/opposite2.mp3" autoplay="autoplay" loop="none"></audio> -->
+  <header>
 
-  <nav id="nav">
+    <nav id="nav">
 
-    <h2>Seinfeld Trivia Game!</h2>
+      <h2>Seinfeld Trivia Game</h2>
 
-    <ul>
-      <li>Once player 1 completes the 5 questions, a score card will appear on the screen detailing how many questions they got correct</li>
-      <li>Once player 1 finishes and receives his score, it will then prompt user 2 to begin his game
-</li>
-      <li>Once a user submits their answer, they will have the option to jump to the next question
-</li>
-      <li>Once the player loads the site, they have the option to play a two player game or one player game
-</li>
-    </ul>
+      <p>Helloooooo...and welcome, to the greatest Seinfeld Trivia Game that's ever been created! I have created a few trivia questions to test your feats of strength. Rules for the game are below:</p>
 
-  </nav>
+      <ul>
+        <li>👩🏻 = Elaine, 👨🏻 = Keith Hernandez</li>
+        <li>Once player 1 finishes and receives his score, it will then prompt user 2 to begin his game
+  </li>
+        <li>Once a user submits their answer, they will have the option to jump to the next question
+  </li>
+        <li>Once the player loads the site, they have the option to play a two player game or one player game
+  </li>
+      </ul>
+
+    </nav>
 
 
-  <div class="container">
+
+
+ <div class="container">
     <div class="logo">
       <!--Seinfeld SVG Logo below -->
       <a href="https://phironaka.github.io/seinfeld-trivia">
@@ -131,47 +132,61 @@
       </svg>
 
       </a>
+
+    </div>
     </div>
     <!--Seinfeld SVG Logo Above ^ -->
 
 
+     <!--Hamburger Icon -->
+        <div class="hamburger-icon" id="icon">
+       <div class="icon-1" id="a"></div>
+       <div class="icon-2" id="b"></div>
+       <div class="icon-3" id="c"></div>
+       <div class="clear"></div>
+     </div>
+      <!--Hamburger Icon -->
 
- <!--Hamburger Icon -->
-    <div class="hamburger-icon" id="icon">
-   <div class="icon-1" id="a"></div>
-   <div class="icon-2" id="b"></div>
-   <div class="icon-3" id="c"></div>
-   <div class="clear"></div>
+
+  </header>
+ <!-- <div id="overlay">
+      <h1>Helloooooooo!</h1>
+
+  </div>
+  <audio src="./assets/opposite2.mp3" autoplay="autoplay" loop="none"></audio> -->
+
+    <div class="container">
+
+ <div class="welcome">
+
  </div>
-  <!--Hamburger Icon -->
-
-
 
     <!--Button to Start the Game -->
     <button class="startButton">Start</button>
     <!-- <button id="clear" type="button" class="btn btn-warning">Restart</button> -->
 
-    <!--scoreboard-->
-    <div class="score">
-      <h3 class="score-correct">correct: 0</h3>
-      <h3 class="score-incorrect">wrong: 0</h3>
-    </div>
+
 
   <!--houses all the content of the game: questions, possible answers -->
 <div class="quiz-content">
-
+  <!--scoreboard-->
+  <div class="score">
+    <h4 class="score-correct"></h3>
+    <h4 class="score-incorrect"></h3>
+  </div>
 
     <div class="timer"></div>
-    <br>
 
 
 
     <div class="question"></div>
 
-    <br>
+    <div class="tie"></div>
+    <div class="winner"></div>
+
 
     <div class="row">
-      <div class="col-md-6 col-md-offset-3 info"></div>
+      <div class="info"></div>
 
     </div>
 
@@ -188,13 +203,17 @@
 
   </div>
 
-<!-- <footer>
-<p>@Copyright 2017, Vandelay Industries </p>
-
-</footer> -->
+<footer>
+<p>© 2017 Vandelay Industries, All Rights Reserved</p>
+</footer>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
 <script src="js/app.js"></script>
+
 
 <!-- <script type="text/javascript">
 // Overlay fade out on load

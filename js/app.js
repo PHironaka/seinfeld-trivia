@@ -1,10 +1,9 @@
 
-
 $(document).ready(function() {
   $('.score').hide();
+  $('.quiz-content').hide();
+   $(".welcome").html("<h1> Are you master of your domain? King of the castle? Prove it!</h1>");
 });
-
-
 
 /////////////////////////////////
 //       Global Variables     //
@@ -20,10 +19,9 @@ $(document).ready(function() {
  var icon3 = document.getElementById("c"); // gets #c div iD element
  var nav = document.getElementById('nav'); // gets #nav div iD element
  var game = {  // variable to store player info
-     player1: {marker: "player 1 ", score: 0, turn: true },
-     player2: {marker: "player 2 ", score: 0, turn: false }
+     player1: {marker: " 👩🏻 ", score: 0, turn: true },
+     player2: {marker: " 👨🏻 ", score: 0, turn: false }
    }
-
  var currentPlayer = game.player1;
  var choice = $('.choice');
 
@@ -49,7 +47,7 @@ $(document).ready(function() {
    choice3: 'Michael',
    choice4: 'Blake',
    answer: 'Cosmo',
-   info: "<img  class= 'img-responsive' width=400 src='https://s-media-cache-ak0.pinimg.com/736x/9c/15/56/9c155660ff8014a32ac8bc8b2b344ec9.jpg'>"
+   info: "<img  class= 'img-responsive' width=400 src='https://s-media-cache-ak0.pinimg.com/564x/6b/e1/f9/6be1f97bbb3e8bd7b22cfd23bcb880fe.jpg'>"
  };
 
  var seinfeldTwo = {
@@ -74,17 +72,66 @@ $(document).ready(function() {
  };
 
  var seinfeldFour = {
-   question: 'What are the names of Elaines bizarro friends?',
-   choice1: 'Herman, Sal, Matthew',
-   choice2: 'Kevin, Gene, Feldman',
-   choice3: 'Elmo, Sid, Robert',
-   choice4: 'Michael, Alonzo, Martin',
-   answer: 'Kevin, Gene, Feldman',
-   info: "<img  class= 'img-responsive' width=400 src=''>"
+   question: "What is the Soup Nazi's favorite expression?",
+   choice1: 'Oh heeeellll no!',
+   choice2: 'No Soup for you!',
+   choice3: 'Get the heck outta heeere',
+   choice4: 'Talk to the hand!',
+   answer: 'No Soup for you!',
+   info: "<img  class= 'img-responsive' width=400 src='http://cdn.playbuzz.com/cdn/0a9b3361-3273-4f39-9047-d96fa5f15d7b/241464ed-f2e0-4c21-9c26-2fbb8d337923.jpg'>"
  };
 
+ var seinfeldFive = {
+   question: "What is the name of the fragrance Calvin Klein stole from Kramer?",
+   choice1: 'The Beach',
+   choice2: 'Fantasy',
+   choice3: 'The K-Man',
+   choice4: 'Light',
+   answer: 'The Beach',
+   info: "<img  class= 'img-responsive' width=400 src='https://s-media-cache-ak0.pinimg.com/736x/f1/dd/57/f1dd571ca1b9e60d5c70e736a0182497.jpg'>"
+ };
 
- var triviaQuestion = [seinfeldOne,seinfeldTwo,seinfeldThree, seinfeldFour]; // variables of each trivia question
+ var seinfeldSix = {
+   question: "What is Jerry's apartment number?",
+   choice1: '5E',
+   choice2: '6B',
+   choice3: '5A',
+   choice4: '3C',
+   answer: '5A',
+   info: "<img  class= 'img-responsive' width=400 src='http://cdn.playbuzz.com/cdn/0a9b3361-3273-4f39-9047-d96fa5f15d7b/39a58813-30e9-4094-84d0-7ba9a82f10e8.jpg'>"
+ };
+
+ var seinfeldSeven = {
+   question: "What is the name of the holiday Frank Costanza (George's father) created?",
+   choice1: 'National Yelling Day',
+   choice2: 'Festivus',
+   choice3: 'Costanzapalooza',
+   choice4: 'The Pole',
+   answer: 'Festivus',
+   info: "<img  class= 'img-responsive' width=400 src='http://festivusweb.com/images/seinfeld-festivusjpg.jpg'>"
+ };
+
+ var seinfeldEight = {
+   question: "What is Elaine's fathers name?",
+   choice1: 'Christopher',
+   choice2: 'Miles',
+   choice3: 'Alton',
+   choice4: 'George',
+   answer: 'Alton',
+   info: "<img  class= 'img-responsive' width=400 src='http://img2.rnkr-static.com/user_node_img/50040/1000786714/870/elaine-and-39-s-dad-terrorized-actors-on-set-photo-u2.jpg'>"
+ };
+
+ var seinfeldNine = {
+   question: "What is Elaine's fathers name?",
+   choice1: 'Christopher',
+   choice2: 'Miles',
+   choice3: 'Alton',
+   choice4: 'George',
+   answer: 'Alton',
+   info: "<img  class= 'img-responsive' width=400 src='http://img2.rnkr-static.com/user_node_img/50040/1000786714/870/elaine-and-39-s-dad-terrorized-actors-on-set-photo-u2.jpg'>"
+ };
+
+ var triviaQuestion = [seinfeldOne,seinfeldTwo,seinfeldThree, seinfeldFour, seinfeldFive, seinfeldSix, seinfeldSeven, seinfeldEight]; // variables of each trivia question
  var questions = []; // empty array for questions
  var num =0; // number that gets counted down towards
  var time =10; // starting point number
@@ -113,15 +160,22 @@ $(document).ready(function() {
   $(".startButton").click(function(){ // click event listener to begin the quiz
     console.log(currentPlayer);
     questions = triviaQuestion;
+
   $('.score').show();
+  $(".welcome").hide();
+  $('.quiz-content').show();
+
+  scoreCorrect.text(game.player1.marker); // text to signify the correct score
 
   if (currentPlayer.marker == game.player2.marker) {
     console.log ('changing the scoreboard')
-    $('.score').text('placeholder');
+    $('.score').text(currentPlayer.marker);
   }
 
     nextquestion();
      $(".startButton").hide(); // hide the start button once the game begins
+
+
   })
 
 
@@ -129,13 +183,14 @@ $(document).ready(function() {
     time = 10; // Five Seconds of time per question
     counter = setInterval(increment, 1000); // The counter for each interval is on a one per second interval
     $(".timer").html("<h2>Time Remaining: " + time + "</h2>"); // Create an H2 signifying the amount of time remaining on the question
-    $(".question").html(questions[num].question); // here is the question
-    $(".ans1").html(questions[num].choice1 ); // here is the first possible answer
-    $(".ans2").html(questions[num].choice2 ); // here is the second possible answer
-    $(".ans3").html(questions[num].choice3); // here is the third possible answer
-    $(".ans4").html(questions[num].choice4 ); // here is the fourth possible answer
+    $(".question").html("<h3>" + questions[num].question + "</h3>"); // here is the question
+    $(".ans1").html("<a>" + questions[num].choice1 + "</a>"); // here is the first possible answer
+    $(".ans2").html("<a>" + questions[num].choice2 + "</a>"); // here is the second possible answer
+    $(".ans3").html("<a>" + questions[num].choice3 + "</a>"); // here is the third possible answer
+    $(".ans4").html("<a>" + questions[num].choice4 + "</a>"); // here is the fourth possible answer
     $(".info").empty(); // strips child node from the info property
     $(".startButton").hide();
+    $(".choice").show();
   };
 
 
@@ -161,29 +216,28 @@ $(document).ready(function() {
     num++;
 
     if (num >= questions.length) {
-      setTimeout(endgame,2000);
+      setTimeout(endgame,5000);
     }
     else {
-      setTimeout(nextquestion,2000);
+      setTimeout(nextquestion,5000);
     };
   };
 
-  $(".choice").click(function() { // Click Event listener to see which answer the user clicks
+  $(".choice").click(function() {
+// Click Event listener to see which answer the user clicks
       if($(this).text() == questions[num].answer) { //if the answer chosen lines up with the question's correct answer
 
         numberCorrect++; // add it to the talley of correct scores answered
         correctanswer(); // correct answer function applied
-        scoreCorrect.text(currentPlayer.marker + 'correct: ' + numberCorrect); // text to signify the correct score
         stop(); //stops method on matched elements
       }
 
       else { // otherwise, use the same click event listener if the answer provided is wrong
         wronganswer(console.log("answer is wrong.")); // console log test to see if it's wrong
-        scoreIncorrect.text(currentPlayer.marker + 'wrong: ' + numberWrong); // text element to signify the wrong answer has been provided
         stop();
       };
 
-      function renderButton() {
+      function renderButton() { //renders the buttons for each question
         var choices = [];
         console.log('ready!');
 
@@ -191,29 +245,39 @@ $(document).ready(function() {
 
         for (i = 0;i<choices.length; i++){
           console.log('hello')
-          var choices = $('<button>').html(choice[i]);
+          // var choices = $('<button>').html(choice[i]);
           console.log(choices[i]);
           $('.choice').append(choices)
+
         }
       }
-        $(".choice").empty();
+
+$(".choice").hide();
+
     });
 
   function correctanswer() { // function providing correct answer feedback message
     $(".question").html("<p>Giddyup! You are correct!</p>"); // Confirming you got the correct answer
+
+     $(".info").fadeIn(2000);
     $(".info").html(questions[num].info); // image of correct answer
+
+
   };
 
   function wronganswer() { //
     numberWrong++; // for every wrong answer, make sure to talley a wrong answer to each competitor's score
-    $(".question").html("<p>Wrong! <br> The correct answer was: " + questions[num].answer + "</p>"); // If you got the answer wrong, it will display the correct answer here
-    $(".info").html("<p>"+questions[num].info+"</p>");
+    $(".question").html("<p>Wrong! The correct answer was: " + questions[num].answer + "</p>"); // If you got the answer wrong, it will display the correct answer here
+
+
   };
 
   function timeout() {
     numTimeout++; // for every question that's unanswered, make sure to talley a non-answer to each competitor's score
     $(".question").html("<p>Time's up! <br> The correct answer was: " + questions[num].answer + "</p>");
     $(".info").html("<p>"+questions[num].info+"</p>");
+    $(".choice").hide();
+
   };
 
 
@@ -222,7 +286,9 @@ $(document).ready(function() {
     currentPlayer.score = numberCorrect - numberWrong;
     $(".question").html("<h2> " + currentPlayer.marker + numberCorrect + " answers correct!</h2>"
        + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" );
-    $(".choice").empty();
+       $(".choice").hide();
+
+    $(".score").empty();
     timer.empty();
     $(".info").empty();
     num = 0;
@@ -230,32 +296,40 @@ $(document).ready(function() {
     numberWrong = 0;
     numTimeout = 0;
     if (currentPlayer == game.player1) {
-      $('.startButton').show().text(game.player2.marker + ' , your turn').css('b');
+      $('.startButton').show().text(game.player2.marker + ' , your turn').css( "width", "8em" );
       currentPlayer = game.player2
     } else {
       if (game.player1.score > game.player2.score) {
-        alert('player1 wins!');
+        alert(game.player1.marker + 'wins!');
+        $(".winner").html('<p>' + game.player1.marker+ 'has won! </p> <img src="https://media.giphy.com/media/KPdzGp8a20QbC/giphy.gif" alt="pez">')
       } else if (game.player1.score == game.player2.score) {
-        alert('we have a tie folks!')
+
+        $(".tie").html('<p> We have a tie! We are all winners! </p> <img src="./images/The_race.jpg" alt="the-race"> '); // image of correct answer
+
       }
 
       else {
-        alert('player2 wins!');
+        alert(game.player2.marker + 'wins!');
+        $(".winner").html('<p>' + game.player2.marker+ 'has won! </p> <img src="https://media.giphy.com/media/KPdzGp8a20QbC/giphy.gif" alt="pez">')
+
       }
 
     }
 
+    // $(".restart").click(function() {
+    //
+    // });
+
 
   };
 
-// Resets page, just need to add a class and event listener
-// function resetPage() {
-//      location.reload();
-//  }
+function resetPage() {
+     location.reload();
+ }
 
-//   function resetPage() { //resets the app back to its original starting point
-//     $(".reset").reload();
-// }
+  function resetPage() { //resets the app back to its original starting point
+    $(".reset").reload();
+}
 
 
 // player turns

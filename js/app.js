@@ -116,8 +116,8 @@ $(document).ready(function() {
   $('.score').show();
 
   if (currentPlayer.marker == game.player2.marker) {
-    numberCorrect = 0;
-    numberWrong = 0;
+    console.log ('changing the scoreboard')
+    $('.score').text('placeholder');
   }
 
     nextquestion();

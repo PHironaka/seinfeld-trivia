@@ -1,20 +1,4 @@
-/*
-Practice to keep code organized. DRY DRY DRY
-1. Global Variables (tried to keep to a minimum)
-2. Hamburger icon
-3. Object literal of all the questions, answers
-4. Function #x: Starts the quiz
-4. Function #x: Player turn Functionality
-5. Function #x: Switch turn Functionality
-6. Function #x: Set the time of each question being asked
-7. Function #x: Countdown timer functionality
-8. Function #x: Stops and clears the current function
-9. Function #x: Houses correct answer functionality
-10. Function #x: Houses wrong answer functionality
-11. Function #x: Houses wrong answer functionality
-12. Function #x: If you don't provide an answer, it will time you out.
-13. Function #x: End of game messaging, checks for winner
-*/
+
 
 /////////////////////////////////
 //       Global Variables     //
@@ -29,12 +13,18 @@ Practice to keep code organized. DRY DRY DRY
  var icon2 = document.getElementById("b"); // gets #b div iD element
  var icon3 = document.getElementById("c"); // gets #c div iD element
  var nav = document.getElementById('nav'); // gets #nav div iD element
+ var game = {  // variable to store player info
+     player1: {marker: "Chris ", score: 0, turn: true },
+     player2: {marker: "Dave ", score: 0, turn: false }
+   }
+
+ var currentPlayer = game.player1;
+ var choice = $('.choice');
 
  /////////////////////////////////
  // Pop up hamburger button   //
  //////////////////////////////
  // Overlay fade out on load
-
    icon.addEventListener('click', function() { // adding a click event listener on the icon
    icon1.classList.toggle('a'); // applying that event listener to #a
    icon2.classList.toggle('c'); // applying that event listener to #b
@@ -47,7 +37,7 @@ Practice to keep code organized. DRY DRY DRY
  //////////////////////////////
 
  var seinfeldOne = {
-   question: 'What is Kramers first name?',
+   question: 'What is Kramers real first name?',
    choice1: 'Chris',
    choice2: 'Cosmo',
    choice3: 'Michael',
@@ -101,9 +91,8 @@ Practice to keep code organized. DRY DRY DRY
  /////////////////////////////////
  ////       Appendages      ////
  //////////////////////////////
- theBody.append(theContainer); //appending the container to the body
 
- $( document ).ready(function() {
+ // $( document ).ready(function() {
 
   //////////////////////
  //    Functions    //
@@ -137,8 +126,7 @@ Practice to keep code organized. DRY DRY DRY
     $(".ans3").html(questions[num].choice3); // here is the third possible answer
     $(".ans4").html(questions[num].choice4 ); // here is the fourth possible answer
     $(".info").empty(); // strips child node from the info property
-    // playTurn();
-     $(".startButton").hide();
+    $(".startButton").hide();
   };
 
 
@@ -160,8 +148,9 @@ Practice to keep code organized. DRY DRY DRY
   function stop() { // stops & clears the current question
     clearInterval(counter);
     num++;
-    if (num == questions.length) {
-      setTimeout(endTurn,3000);
+
+    if (num >= questions.length) {
+      setTimeout(endgame,3000);
     }
     else {
       setTimeout(nextquestion,4000);
@@ -169,20 +158,17 @@ Practice to keep code organized. DRY DRY DRY
   };
 
   $(".choice").click(function() { // Click Event listener to see which answer the user clicks
-
       if($(this).text() == questions[num].answer) { //if the answer chosen lines up with the question's correct answer
 
         numberCorrect++; // add it to the talley of correct scores answered
         correctanswer(); // correct answer function applied
-        scoreCorrect.text('correct: ' + numberCorrect); // text to signify the correct score
+        scoreCorrect.text(currentPlayer.marker + 'correct: ' + numberCorrect); // text to signify the correct score
         stop(); //stops method on matched elements
-
-
       }
 
       else { // otherwise, use the same click event listener if the answer provided is wrong
         wronganswer(console.log("answer is wrong.")); // console log test to see if it's wrong
-        scoreIncorrect.text('wrong: ' + numberWrong); // text element to signify the wrong answer has been provided
+        scoreIncorrect.text(currentPlayer.marker + 'wrong: ' + numberWrong); // text element to signify the wrong answer has been provided
         stop();
       };
 
@@ -221,9 +207,10 @@ Practice to keep code organized. DRY DRY DRY
 
 
 
-  function endTurn() { // Updating scores and updating the turn count. The following gets displayed at the end of the game.
+  function endgame() { // end of game function. The following gets displayed at the end of the game.
+    currentPlayer.score = numberCorrect - numberWrong;
     $(".question").html("<h2> " + currentPlayer.marker + numberCorrect + " answers correct!</h2>"
-       + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" + "<h2> "+ numTimeout +  " questions were left unanswered.</h2>");
+       + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" );
     $(".choice").empty();
     timer.empty();
     $(".info").empty();
@@ -231,6 +218,14 @@ Practice to keep code organized. DRY DRY DRY
     numberCorrect = 0;
     numberWrong = 0;
     numTimeout = 0;
+    if (currentPlayer = game.player2) {
+      $('.startButton').show().text(currentPlayer.marker + ' , your turn').css({
+      "width": "10em",
+      "margin-left": "35%"
+    });
+    } else {
+        alert('the game is over');
+    }
 
   };
 
@@ -245,20 +240,13 @@ Practice to keep code organized. DRY DRY DRY
 
 // player turns
 
-var game = {  // variable to store player info
-    player1: {marker: "Chris ", score: 0, turn: true, right:0, wrong:0 , unanswered:0 },
-    player2: {marker: "Dave ", score: 0, turn: false, right:0, wrong:0, unanswered:0 }
-  }
 
-var currentPlayer = game.player1;
-var choice = $('.choice');
 
-choice.each(function(s) {
-  $(this).on('click', playTurn)
-  console.log('WORK DAMNIT.')
-
-})
-
+// choice.each(function(s) {
+//   $(this).on('click', playTurn)
+//   console.log('WORK DAMNIT.')
+//
+// })
   function playTurn() { // Function #1: signify a players turn
     $(this).text(currentPlayer.marker) // adds the current player's marker
     $(this).off('click', playTurn) // Listening for a click event (off)
@@ -274,16 +262,6 @@ choice.each(function(s) {
   }
 
 
-  // $('.container').clear();
-  //
-  // // if (game.player1.correct > game.player2.correct) { // if player one has more correct answers than player two, player one wins
-  //       theContainer.append("<p> Player one wins!</p>"); // append new paragraph element w/Player one wins
-  //
-  // } else { // if player two has more correct answers than player one, player two wins
-  //     theContainer.append("<p> Player two wins!</p>");
-  // }
-
-
 
   // function checkWinner() { // check to see who the winner is
   //   if (game.player1.score >= game.player2.score || game.player2.score >= game.player1.score ) {
@@ -297,7 +275,7 @@ choice.each(function(s) {
   //   }
   // }
 
-});
+// });
 
 
 

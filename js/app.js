@@ -1,23 +1,13 @@
-/*
-Practice to keep code organized. DRY DRY DRY
-1. Global Variables (tried to keep to a minimum)
-2. Hamburger icon
-3. Object literal of all the questions, answers
-4. Function #x: Starts the quiz
-4. Function #x: Player turn Functionality
-5. Function #x: Switch turn Functionality
-6. Function #x: Set the time of each question being asked
-7. Function #x: Countdown timer functionality
-8. Function #x: Stops and clears the current function
-9. Function #x: Houses correct answer functionality
-10. Function #x: Houses wrong answer functionality
-11. Function #x: Houses wrong answer functionality
-12. Function #x: If you don't provide an answer, it will time you out.
-13. Function #x: End of game messaging, checks for winner
-*/
+
+
+$(document).ready(function() {
+  $('.score').hide();
+});
+
+
 
 /////////////////////////////////
-// Global Variables   //
+//       Global Variables     //
 //////////////////////////////
 
  var theBody = $('body'); // body
@@ -29,19 +19,18 @@ Practice to keep code organized. DRY DRY DRY
  var icon2 = document.getElementById("b"); // gets #b div iD element
  var icon3 = document.getElementById("c"); // gets #c div iD element
  var nav = document.getElementById('nav'); // gets #nav div iD element
- var game = {       // variable to store player info
-     player1: {marker: "👴🏽", score: 0 },
-     player2: {marker: "👱🏼", score: 0 }
+ var game = {  // variable to store player info
+     player1: {marker: "player 1 ", score: 0, turn: true },
+     player2: {marker: "player 2 ", score: 0, turn: false }
    }
+
  var currentPlayer = game.player1;
  var choice = $('.choice');
-
 
  /////////////////////////////////
  // Pop up hamburger button   //
  //////////////////////////////
  // Overlay fade out on load
-
    icon.addEventListener('click', function() { // adding a click event listener on the icon
    icon1.classList.toggle('a'); // applying that event listener to #a
    icon2.classList.toggle('c'); // applying that event listener to #b
@@ -49,8 +38,12 @@ Practice to keep code organized. DRY DRY DRY
    nav.classList.toggle('show'); // applying that event listener to #show
  });
 
+ /////////////////////////////////
+ //   q/a/image object array  //
+ //////////////////////////////
+
  var seinfeldOne = {
-   question: 'What is Kramers first name?',
+   question: 'What is Kramers real first name?',
    choice1: 'Chris',
    choice2: 'Cosmo',
    choice3: 'Michael',
@@ -101,22 +94,34 @@ Practice to keep code organized. DRY DRY DRY
  var timer = $('.timer'); // variable for the time remaining countdown timer
 
 
- /////////////////////////////////
- ////       Appendages      ////
- //////////////////////////////
- theBody.append(theContainer); //appending the container to the body
-
- $( document ).ready(function() {
-
   //////////////////////
  //    Functions    //
   ////////////////////
 
-  $(".startButton").click(function(){ // begins the quiz
+
+// TESTING FUNCTIONS:
+
+// Reset button
+ //  function clear() {
+ //   $display.val("");
+ // }
+ // theContainer.show("#clear").on("click", clear);
+ // $("#clear").hide();
+
+
+
+  $(".startButton").click(function(){ // click event listener to begin the quiz
+    console.log(currentPlayer);
     questions = triviaQuestion;
+  $('.score').show();
+
+  if (currentPlayer.marker == game.player2.marker) {
+  }
+
     nextquestion();
      $(".startButton").hide(); // hide the start button once the game begins
   })
+
 
   function nextquestion() { // Function #3: Set the time of each question being asked
     time = 10; // Five Seconds of time per question
@@ -128,9 +133,10 @@ Practice to keep code organized. DRY DRY DRY
     $(".ans3").html(questions[num].choice3); // here is the third possible answer
     $(".ans4").html(questions[num].choice4 ); // here is the fourth possible answer
     $(".info").empty(); // strips child node from the info property
-    // playTurn();
-     $(".startButton").hide();
+    $(".startButton").hide();
   };
+
+
 
 
   function increment() { // Function #4: countdown timer function
@@ -148,30 +154,30 @@ Practice to keep code organized. DRY DRY DRY
   };
 
 
-  function stop() { // Function #5: stops & clears the current question
+  function stop() { // stops & clears the current question
     clearInterval(counter);
     num++;
-    if (num == questions.length) {
-      setTimeout(endgame,4000);
+
+    if (num >= questions.length) {
+      setTimeout(endgame,2000);
     }
     else {
-      setTimeout(nextquestion,4000);
+      setTimeout(nextquestion,2000);
     };
   };
 
   $(".choice").click(function() { // Click Event listener to see which answer the user clicks
-
       if($(this).text() == questions[num].answer) { //if the answer chosen lines up with the question's correct answer
 
         numberCorrect++; // add it to the talley of correct scores answered
         correctanswer(); // correct answer function applied
-        scoreCorrect.text('correct: ' + numberCorrect); // text to signify the correct score
+        scoreCorrect.text(currentPlayer.marker + 'correct: ' + numberCorrect); // text to signify the correct score
         stop(); //stops method on matched elements
       }
 
       else { // otherwise, use the same click event listener if the answer provided is wrong
         wronganswer(console.log("answer is wrong.")); // console log test to see if it's wrong
-        scoreIncorrect.text('wrong: ' + numberWrong); // text element to signify the wrong answer has been provided
+        scoreIncorrect.text(currentPlayer.marker + 'wrong: ' + numberWrong); // text element to signify the wrong answer has been provided
         stop();
       };
 
@@ -202,16 +208,18 @@ Practice to keep code organized. DRY DRY DRY
     $(".info").html("<p>"+questions[num].info+"</p>");
   };
 
-
   function timeout() {
     numTimeout++; // for every question that's unanswered, make sure to talley a non-answer to each competitor's score
     $(".question").html("<p>Time's up! <br> The correct answer was: " + questions[num].answer + "</p>");
     $(".info").html("<p>"+questions[num].info+"</p>");
   };
 
+
+
   function endgame() { // end of game function. The following gets displayed at the end of the game.
+    currentPlayer.score = numberCorrect - numberWrong;
     $(".question").html("<h2> " + currentPlayer.marker + numberCorrect + " answers correct!</h2>"
-       + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" + "<h2> "+ numTimeout +  " questions were left unanswered.</h2>");
+       + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" );
     $(".choice").empty();
     timer.empty();
     $(".info").empty();
@@ -219,119 +227,46 @@ Practice to keep code organized. DRY DRY DRY
     numberCorrect = 0;
     numberWrong = 0;
     numTimeout = 0;
-    $("button").show();
-    checkWinner();
+    if (currentPlayer == game.player1) {
+      $('.startButton').show().text(game.player2.marker + ' , your turn').css('b');
+      currentPlayer = game.player2
+    } else {
+      if (game.player1.score > game.player2.score) {
+        alert('player1 wins!');
+      } else if (game.player1.score == game.player2.score) {
+        alert('we have a tie folks!')
+      }
+
+      else {
+        alert('player2 wins!');
+      }
+
+    }
+
+
   };
 
-  choice.each(function(s) {
-    $(this).on('click', playTurn)
-    console.log('WORK DAMNIT.')
+// Resets page, just need to add a class and event listener
+// function resetPage() {
+//      location.reload();
+//  }
 
-  })
-
-  // function playTurn() { // Function #1: signify a players turn
-  //   $(this).text(currentPlayer.marker) // adds the current player's marker
-  //   $(this).off('click', playTurn) // Listening for a click event (off)
-  //   checkWinner() // apply the Check Winner function to see whos winning the game
-  // }
-  //
-  // function switchTurns() { // Function #2: switch turns between player 1 and player 2
-  //   if(currentPlayer == game.player1) {
-  //     currentPlayer = game.player2
-  //   } else {
-  //     currentPlayer = game.player1
-  //   }
-  // }
-  //
-  // function checkWinner() { // check to see who the winner is
-  //   if (game.player1.score >= game.player2.score || game.player2.score >= game.player1.score ) {
-  //     $.alert({title: currentPlayer.marker, content: 'Is The Winner!'});
-  //
-  //     choice.each(function(s) {
-  //       $(this).off('click', playTurn)
-  //     })
-  //   } else {
-  //     switchTurns()
-  //   }
-  // }
-
-});
-
-
-
-// var game = {
-//   player1: {score: 0}, // array Player 1
-//   player2: {score: 0}, // array Player 2
-//
-//   //////////////////////
-//   //  QUIZ QUESTIONS  //
-//   //////////////////////
-//
-//   questions: [
-//      {
-//        image: 'https://s-media-cache-ak0.pinimg.com/736x/9c/15/56/9c155660ff8014a32ac8bc8b2b344ec9.jpg',
-//        question: "What are the names of Elaine's bizarro friends?",
-//        answers: [
-//          {value: "Herman, Sal, Matthew", correct: false},
-//          {value: "Kevin, Gene, Feldman", correct: true},
-//          {value: "Elmo, Sid, Robert", correct: false},
-//          {value: "Michael, Alonzo, Martin", correct: false},
-//        ]
-//      },
-//
-//      {
-//        image: 'https://brobible.files.wordpress.com/2014/07/cosmo-kramer-assman3.png?w=650',
-//        question: "What is Kramer's first name?",
-//        answers: [
-//          {value: "Blake", correct: false},
-//          {value: "Christopher", correct: false},
-//          {value: "Cosmo", correct: true},
-//          {value: "Michael, Alonzo, Martin", correct: false},
-//        ]
-//      },
-//
-//      {
-//        image: 'http://kramersapartment.com/wp-content/uploads/jack-klompus-the-cadillac-seinfeld-1.jpg',
-//        question: "What is the name of the Gated Community Jery and George's parents move to?",
-//        answers: [
-//          {value: "Flamingo Estates", correct: false},
-//          {value: "Palm Condos", correct: false},
-//          {value: "Pelican Way", correct: false},
-//          {value: "Del Boca Vista", correct: true},
-//        ]
-//      },
-//
-//      {
-//        image: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-02/27/17/enhanced/webdr03/enhanced-13804-1425076996-24.png?no-auto',
-//        question: "What is the name of Jerry's nemesis on the show?",
-//        answers: [
-//          {value: "Newman", correct: true},
-//          {value: "Helen", correct: false},
-//          {value: "Einstein", correct: false},
-//          {value: "Frank", correct: false},
-//        ]
-//      },
-//
-//      {
-//        image: 'https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAANgAAAAJDJjYjViYzAwLTU4ODUtNGNiOC05ZTJmLTg4ZWVmY2M1NDM2YQ.jpg',
-//        question: "What electronic gift did Jerry give to his parents?",
-//        answers: [
-//          {value: "Wizard Computer", correct: true},
-//          {value: "Earrings", correct: false},
-//          {value: "Sneakers", correct: false},
-//          {value: "Food", correct: false},
-//        ]
-//      },
-//
-//      {
-//        image: 'http://vignette1.wikia.nocookie.net/seinfeld/images/8/86/TheFrogger.jpg/revision/latest?cb=20110826182700',
-//        question: "What video game did George have the high score on?",
-//        answers: [
-//          {value: "Tetris", correct: false},
-//          {value: "Galaga", correct: false},
-//          {value: "Pacman", correct: false},
-//          {value: "Frogger", correct: true},
-//        ]
-//      },
-//
+//   function resetPage() { //resets the app back to its original starting point
+//     $(".reset").reload();
 // }
+
+
+// player turns
+  function playTurn() { // Function #1: signify a players turn
+    $(this).text(currentPlayer.marker) // adds the current player's marker
+    $(this).off('click', playTurn) // Listening for a click event (off)
+   // checkWinner() // apply the Check Winner function to see whos winning the game
+  }
+
+  function switchTurns() { // Function #2: switch turns between player 1 and player 2
+    if(currentPlayer == game.player1) {
+      currentPlayer = game.player2
+    } else {
+      currentPlayer = game.player1
+    }
+  }

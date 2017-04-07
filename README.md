@@ -93,4 +93,3 @@ Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinf
 - `.row` -      container where the correct answer's image appears
 - `.info` - parent element of correct answer's image
 - `.choice` - 4 choices for each question asked
->>>>>>> d1970322fe02a8903f25a7a693907db4d5fd0d53

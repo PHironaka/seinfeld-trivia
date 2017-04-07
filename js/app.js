@@ -3,6 +3,7 @@ $(document).ready(function() {
   $('.score').hide();
   $('.quiz-content').hide();
    $(".welcome").html("<h1> Are you master of your domain? King of the castle? Lord...of the Manor? Prove it!</h1>");
+   $("#reset").hide();
 });
 
 /////////////////////////////////
@@ -164,12 +165,13 @@ $(document).ready(function() {
   $('.score').show();
   $(".welcome").hide();
   $('.quiz-content').show();
+  $("#reset").hide();
 
   scoreCorrect.text(game.player1.marker); // text to signify the correct score
 
   if (currentPlayer.marker == game.player2.marker) {
     console.log ('changing the scoreboard')
-    $('.score').text(currentPlayer.marker);
+    $('.score').html('<h4 class="score-player">' + currentPlayer.marker + '</h4>');
   }
 
     nextquestion();
@@ -191,6 +193,7 @@ $(document).ready(function() {
     $(".info").empty(); // strips child node from the info property
     $(".startButton").hide();
     $(".choice").show();
+    $("#reset").hide();
   };
 
 
@@ -216,10 +219,10 @@ $(document).ready(function() {
     num++;
 
     if (num >= questions.length) {
-      setTimeout(endgame,5000);
+      setTimeout(endgame,1000);
     }
     else {
-      setTimeout(nextquestion,5000);
+      setTimeout(nextquestion,1000);
     };
   };
 
@@ -230,6 +233,7 @@ $(document).ready(function() {
         numberCorrect++; // add it to the talley of correct scores answered
         correctanswer(); // correct answer function applied
         stop(); //stops method on matched elements
+        $("#reset").hide();
       }
 
       else { // otherwise, use the same click event listener if the answer provided is wrong
@@ -253,6 +257,7 @@ $(document).ready(function() {
       }
 
 $(".choice").hide();
+$("#reset").hide();
 
     });
 
@@ -261,14 +266,14 @@ $(".choice").hide();
 
      $(".info").fadeIn(2000);
     $(".info").html(questions[num].info); // image of correct answer
-
+    $("#reset").hide();
 
   };
 
   function wronganswer() { //
     numberWrong++; // for every wrong answer, make sure to talley a wrong answer to each competitor's score
     $(".question").html("<p>Wrong! The correct answer was: " + questions[num].answer + "</p>"); // If you got the answer wrong, it will display the correct answer here
-
+    $("#reset").hide();
 
   };
 
@@ -277,6 +282,7 @@ $(".choice").hide();
     $(".question").html("<p>Time's up! <br> The correct answer was: " + questions[num].answer + "</p>");
     $(".info").html("<p>"+questions[num].info+"</p>");
     $(".choice").hide();
+    $("#reset").hide();
 
   };
 
@@ -288,9 +294,11 @@ $(".choice").hide();
        + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" );
        $(".choice").hide();
 
+
     $(".score").empty();
     timer.empty();
     $(".info").empty();
+
     num = 0;
     numberCorrect = 0;
     numberWrong = 0;
@@ -302,35 +310,44 @@ $(".choice").hide();
       if (game.player1.score > game.player2.score) {
         alert(game.player1.marker + 'wins YAAAAS!');
         $(".winner").html('<p>' + game.player1.marker+ 'has won! </p> <img src="https://media.tenor.co/images/8dfff07cf12e6e152acfb1cc8827486f/tenor.gif" alt="pez">')
+
       } else if (game.player1.score == game.player2.score) {
 
-        $(".tie").html('<p> We have a tie! We are all winners! </p> <img src="./images/The_race.jpg" alt="the-race"> '); // image of correct answer
+        $(".tie").html('<p> We have a tie! We are all winners! </p> <img src="http://vignette3.wikia.nocookie.net/seinfeld/images/f/fd/The_race.jpeg/revision/latest?cb=20120908035008" alt="the-race"> '); // image of correct answer
 
       }
 
       else {
         alert(game.player2.marker + 'wins!');
         $(".winner").html('<p>' + game.player2.marker+ 'has won! </p> <img src="https://media.giphy.com/media/KPdzGp8a20QbC/giphy.gif" alt="pez">')
-
       }
-
+$("#reset").show();
     }
+
 
     // $(".restart").click(function() {
     //
     // });
 
 
+
   };
 
-function resetPage() {
-     location.reload();
- }
+  // $('#reset').click(function() {
+  //   //quiz-content,
+  //   $('.winner, .tie, .score-player, .timer, .question, .choice').empty();
+  //   $('.welcome, .startButton').fadeIn()
+  //
+  //   if ($(".startButton").show()) {
+  //     $('.winner, .tie, .score-player, .timer, .question, .choice').show();
+  //   }
+  //   // location.reload();
+  // });
 
-  function resetPage() { //resets the app back to its original starting point
-    $(".reset").reload();
-}
-
+  $('#reset').click(function() {
+    //quiz-content,
+    location.reload();
+});
 
 // player turns
   function playTurn() { // Function #1: signify a players turn

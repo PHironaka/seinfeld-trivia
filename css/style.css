@@ -95,8 +95,52 @@ p {
   -ms-transition: all 300ms ease-out;
   -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
+  box-shadow: inset -5px -4px 2px 0px rgba(0, 0, 0, 0.29);
 }
 .container .startButton:hover {
+  color: red;
+  background: #fcd720;
+}
+
+#reset {
+  width: 6em;
+  background: #d0011b;
+  height: 2em;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  font-size: 1.5em;
+  outline: none;
+  margin: 0 45% 2em;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  box-shadow: inset -5px -4px 2px 0px rgba(0, 0, 0, 0.29);
+}
+
+
+.container .startButton {
+  width: 6em;
+  background: #d0011b;
+  height: 2em;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  font-size: 1.5em;
+  outline: none;
+  margin: 2em 41%;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  box-shadow: inset -5px -4px 2px 0px rgba(0, 0, 0, 0.29);
+}
+.container .startButton:hover, #reset:hover {
   color: red;
   background: #fcd720;
 }
@@ -116,10 +160,12 @@ p {
   -ms-transition: all 300ms ease-out;
   -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
+  box-shadow: inset -5px -4px 2px 0px rgba(0, 0, 0, 0.29);
 }
 
 .choice:hover {
-  color: yellow;
+  color: red;
+  background-color: yellow;
 }
 
 .choice a {
@@ -389,7 +435,7 @@ border-radius: 20px;
     display: block;
     margin: 0 auto;
     width: 400px;
-    padding: 2em 0;
+    padding: 0 ;
 }
 
 .content {

@@ -55,6 +55,7 @@ Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinf
 - HTML
 - CSS,
 - Javascript & jQuery
+-  Google Web Font:  Josephin Sans
 
 ## CSS Classes and Ids
 

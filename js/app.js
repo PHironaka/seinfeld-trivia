@@ -218,10 +218,10 @@ $(document).ready(function() {
     num++;
 
     if (num >= questions.length) {
-      setTimeout(endgame,1000);
+      setTimeout(endgame,2500);
     }
     else {
-      setTimeout(nextquestion,1000);
+      setTimeout(nextquestion,2500);
     };
   };
 

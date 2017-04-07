@@ -5,6 +5,8 @@
 
 ### [Seinfeld Trivia](https://phironaka.github.io/seinfeld-trivia/)
 
+![wireframe](./assets/image.png)
+
 ## Premise
 
 Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinfeld. 

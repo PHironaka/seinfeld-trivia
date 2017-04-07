@@ -48,6 +48,7 @@ $(document).ready(function() {
    choice3: 'Michael',
    choice4: 'Blake',
    answer: 'Cosmo',
+
    info: "<img class= 'img-responsive' width=400 src='https://s-media-cache-ak0.pinimg.com/564x/6b/e1/f9/6be1f97bbb3e8bd7b22cfd23bcb880fe.jpg'>"
  };
 
@@ -106,6 +107,7 @@ $(document).ready(function() {
    question: "What is the name of the holiday Frank Costanza (George's father) created?",
    choice1: 'National Yelling Day',
    choice2: 'Festivus',
+
    choice3: 'Frankpalooza',
    choice4: 'The Pole',
    answer: 'Festivus',
@@ -297,6 +299,7 @@ $("#reset").hide();
     $(".question").html("<h2> " + currentPlayer.marker + numberCorrect + " answers correct!</h2>"
        + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" );
        $(".choice").hide();
+
     $(".score").empty();
     timer.empty();
     $(".info").empty();
@@ -337,6 +340,20 @@ $("#reset").show();
 
   // $('#reset').click(function() {
   //   //quiz-content,
+  //   $('.winner, .tie, .score-player, .timer, .question, .choice').empty();
+  //   $('.welcome, .startButton').fadeIn()
+  //
+  //   if ($(".startButton").show()) {
+  //     $('.winner, .tie, .score-player, .timer, .question, .choice').show();
+  //   }
+  //   // location.reload();
+  // });
+
+  $('#reset').click(function() {
+    //quiz-content,
+    location.reload();
+});
+
   //   $('.winner, .tie, .score-player, .timer, .question, .choice').hide();
   //   $('.welcome, .startButton').fadeIn();
   //   if ($(".startButton").show()) {

@@ -46,17 +46,17 @@ Seinfeld Trivia! is a two player trivia game to test a user's knowledge of Seinf
 - `player1` - Player 1 
 - `#nav` -modal navigation window. all the instructions on how to play the game.
 - `.container` - container which wraps around the entire page. 
--  `.container-logo` -  Seinfeld logo
--   `.hamburger-icon` - nav icon in top right hand corner of page
--    `.welcome` -  Intro copy on the home screen
--     `.startButton` - Button on the home screen to start the game
- - `.quiz-content` - div that contains all elements of the game itself (questions, answers, choices)
--  `.score` - the container where the player's marker is at
--   `.score-player` - the h4 tag where the player marker sits
--  `.timer` - Countdown timer
+- `.container-logo` -  Seinfeld logo
+- `.hamburger-icon` - nav icon in top right hand corner of page
+- `.welcome` -  Intro copy on the home screen
+- `.startButton` - Button on the home screen to start the game
+- `.quiz-content` - div that contains all elements of the game itself (questions, answers, choices)
+- `.score` - the container where the player's marker is at
+- `.score-player` - the h4 tag where the player marker sits
+- `.timer` - Countdown timer
 - `.question` - the trivia question
 - `.tie` - If there is a tie, a message  and image will appear inside here
--  `.winner` - the winner of the game will have a personalized congratulations message, whether it be player 1 or player 2
--  `.row` -      container where the correct answer's image appears
--   `.info` - parent element of correct answer's image
--    `.choice` - 4 choices for each question asked
+- `.winner` - the winner of the game will have a personalized congratulations message, whether it be player 1 or player 2
+- `.row` -      container where the correct answer's image appears
+- `.info` - parent element of correct answer's image
+- `.choice` - 4 choices for each question asked

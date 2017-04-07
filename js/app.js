@@ -357,7 +357,7 @@ $("#reset").show();
   // });
 
 
-Reloads the page as opposed to reset it
+//Reloads the page as opposed to reset it
   $('#reset').click(function() {
     //quiz-content,
     location.reload();

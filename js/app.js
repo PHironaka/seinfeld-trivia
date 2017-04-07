@@ -48,7 +48,8 @@ $(document).ready(function() {
    choice3: 'Michael',
    choice4: 'Blake',
    answer: 'Cosmo',
-   info: "<img  class= 'img-responsive' width=400 src='https://s-media-cache-ak0.pinimg.com/564x/6b/e1/f9/6be1f97bbb3e8bd7b22cfd23bcb880fe.jpg'>"
+
+   info: "<img class= 'img-responsive' width=400 src='https://s-media-cache-ak0.pinimg.com/564x/6b/e1/f9/6be1f97bbb3e8bd7b22cfd23bcb880fe.jpg'>"
  };
 
  var seinfeldTwo = {
@@ -58,7 +59,7 @@ $(document).ready(function() {
    choice3: 'Del Boca Vista',
    choice4: 'Panama Canals',
    answer: 'Del Boca Vista',
-   info: "<img  class= 'img-responsive' width=400 src='http://vignette1.wikia.nocookie.net/seinfeld/images/8/86/TheFrogger.jpg/revision/latest?cb=20110826182700'>"
+   info: "<img class= 'img-responsive' width=400 src='https://i.ytimg.com/vi/Zc9-rYBOS5w/hqdefault.jpg'>"
  };
 
 
@@ -69,7 +70,7 @@ $(document).ready(function() {
    choice3: 'Elmo, Sid, Robert',
    choice4: 'Michael, Alonzo, Martin',
    answer: 'Kevin, Gene, Feldman',
-   info: "<img  class= 'img-responsive' width=400 src='http://kramersapartment.com/wp-content/uploads/jack-klompus-the-cadillac-seinfeld-1.jpg'>"
+   info: "<img class= 'img-responsive' width=400 src='http://i.onionstatic.com/avclub/3865/40/16x9/960.jpg'>"
  };
 
  var seinfeldFour = {
@@ -106,7 +107,8 @@ $(document).ready(function() {
    question: "What is the name of the holiday Frank Costanza (George's father) created?",
    choice1: 'National Yelling Day',
    choice2: 'Festivus',
-   choice3: 'Costanzapalooza',
+
+   choice3: 'Frankpalooza',
    choice4: 'The Pole',
    answer: 'Festivus',
    info: "<img  class= 'img-responsive' width=400 src='http://festivusweb.com/images/seinfeld-festivusjpg.jpg'>"
@@ -176,7 +178,6 @@ $(document).ready(function() {
 
     nextquestion();
      $(".startButton").hide(); // hide the start button once the game begins
-
 
   })
 
@@ -286,14 +287,18 @@ $("#reset").hide();
 
   };
 
-
+  // Work in progress function - testing for after player 1 plays, switch turns to player two button
+  //function nextTurn() {
+  //   $('.next-button').html('<button style="width: 8em;"> ' + currentPlayer.marker + ', your turn</button>');
+  //   $('.next-button').appendTo($('body'));
+  //
+  // }
 
   function endgame() { // end of game function. The following gets displayed at the end of the game.
     currentPlayer.score = numberCorrect - numberWrong;
     $(".question").html("<h2> " + currentPlayer.marker + numberCorrect + " answers correct!</h2>"
        + "<h2> " + currentPlayer.marker + numberWrong + " wrong!</h2>" );
        $(".choice").hide();
-
 
     $(".score").empty();
     timer.empty();
@@ -344,6 +349,32 @@ $("#reset").show();
   //   // location.reload();
   // });
 
+  $('#reset').click(function() {
+    //quiz-content,
+    location.reload();
+});
+
+  //   $('.winner, .tie, .score-player, .timer, .question, .choice').hide();
+  //   $('.welcome, .startButton').fadeIn();
+  //   if ($(".startButton").show()) {
+  //     $('#reset').hide();
+  //     // $('.winner, .tie, .score-player, .timer, .question, .choice').show();
+  //     $('.startButton').show().text('Start');
+  //     $('.startButton').click(function()  {
+  //         $('.score-player, .timer, .question, .choice').show();
+  //       // if ( currentPlayer == game.player2) {
+  //       //   currentPlayer = game.player1
+  //       // } else {
+  //       //   currentPlayer = game.player2
+  //       // }
+  //
+  //     });
+  //
+  //   }
+  // });
+
+
+//Reloads the page as opposed to reset it
   $('#reset').click(function() {
     //quiz-content,
     location.reload();

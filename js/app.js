@@ -5,13 +5,15 @@ $(document).ready(function() {
    $(".welcome").html("<h1> Are you master of your domain? King of the castle? Prove it!</h1>");
 });
 
+
+
 /////////////////////////////////
 //       Global Variables     //
 //////////////////////////////
 
  var theBody = $('body'); // body
  var theContainer = $('.container'); // container class
- var scoreCorrect = $('.score-correct'); // correct score class
+ var scoreCorrect = $('.score-player'); // correct score class
  var scoreIncorrect = $('.score-incorrect'); // incorrect score class
  var icon = document.getElementById("icon"); // gets #icon div iD element
  var icon1 = document.getElementById("a"); // gets #a div iD element
